@@ -34,7 +34,7 @@ export default class Joke extends Component {
             </div>
 
             <div className="Joke-emoji">
-               <i className={this.getModification().emoji} aria-role="presentation" aria-label="ROLLING ON THE FLOOR LAUGHING"></i>
+               <i className={this.getModification().emoji} aria-label="ROLLING ON THE FLOOR LAUGHING"></i>
             </div>
          </div>
       );
