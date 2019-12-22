@@ -30,14 +30,14 @@ export default class JokesList extends Component {
          let response = await axios.get("https://icanhazdadjoke.com/", { headers: { Accept: "application/json" } });
          jokes.push({ id: uuid(), text: response.data.joke, votes: 0 });
       }
-      this.setState(st => (
-         { jokes: [...st.jokes, ...jokes] }
-      ), () => window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes))
+      this.setState(st => ({
+         loading: false, jokes: [...st.jokes, ...jokes]
+      }), () => window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes))
       );
    }
 
    handleClick() {
-      this.getJokes();
+      this.setState({ loading: true }, this.getJokes);
    }
 
    handleVotes(id, delta) {
@@ -50,7 +50,7 @@ export default class JokesList extends Component {
    }
 
    render() {
-      let joke = this.state.jokes.map(j => (
+      let jokes = this.state.jokes.map(j => (
          <Joke
             key={j.id}
             text={j.text}
@@ -60,6 +60,11 @@ export default class JokesList extends Component {
          />
       ));
 
+      let spinner = <div className="JokesList-spinner">
+         <i className="far fa-8x fa-laugh fa-spin" />
+         <h1 className="JokesList-title">Loading...</h1>
+      </div>;
+
       return (
          <div className="JokesList">
             <div className="JokesList-sidebar">
@@ -68,7 +73,12 @@ export default class JokesList extends Component {
                <button className="JokesList-getmore" onClick={this.handleClick}>New Jokes</button>
             </div>
             <div className="JokesList-jokes">
-               {joke}
+               {this.state.loading ? (
+                  <div className="JokesList-spinner-container">
+                     {spinner}
+                  </div>
+               ) : (<div>{jokes}</div>)}
+
             </div>
          </div>
       );
