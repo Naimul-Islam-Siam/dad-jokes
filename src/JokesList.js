@@ -50,7 +50,7 @@ export default class JokesList extends Component {
    }
 
    render() {
-      let jokes = this.state.jokes.map(j => (
+      let jokes = this.state.jokes.sort((a, b) => b.votes - a.votes).map(j => (
          <Joke
             key={j.id}
             text={j.text}
