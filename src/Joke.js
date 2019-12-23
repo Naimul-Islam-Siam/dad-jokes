@@ -20,6 +20,16 @@ export default class Joke extends Component {
       }
    }
 
+   getAnimation() {
+      if (this.props.votes === 15) return { animation: "spin 0.7s ease -in -out 0s" }
+      if (this.props.votes === 12) return { animation: "spin 0.7s ease -in -out 0s" }
+      if (this.props.votes === 9) return { animation: "spin 0.7s ease -in -out 0s" }
+      if (this.props.votes === 6) return { animation: "spin 0.7s ease -in -out 0s" }
+      if (this.props.votes === 3) return { animation: "spin 0.7s ease -in -out 0s" }
+      if (this.props.votes === -1) return { animation: "spin 0.7s ease -in -out 0s" }
+      else return { animation: "none" }
+   }
+
    render() {
       return (
          <div className="Joke">
@@ -34,7 +44,7 @@ export default class Joke extends Component {
             </div>
 
             <div className="Joke-emoji">
-               <i className={this.getModification().emoji} aria-label="ROLLING ON THE FLOOR LAUGHING"></i>
+               <i className={this.getModification().emoji} style={{ animation: this.getAnimation().animation }} aria-label="ROLLING ON THE FLOOR LAUGHING"></i>
             </div>
          </div>
       );

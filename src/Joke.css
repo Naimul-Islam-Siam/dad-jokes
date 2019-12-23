@@ -38,6 +38,17 @@
 .Joke-btns-down {
    cursor: pointer;
    font-size: 15px;
+   transition: all 0.3s;
+}
+
+.Joke-btns-up:hover {
+   animation: move-up 0.7s ease-out;
+   color: #4caf50;
+}
+
+.Joke-btns-down:hover {
+   animation: move-down 0.7s ease-out;
+   color: #f44336;
 }
 
 .Joke-emoji {
@@ -46,4 +57,53 @@
    margin-left: auto;
    box-shadow: 0 10px 38px rgba(0, 0, 0, 0.2),
       0 10px 12px rgba(0, 0, 0, 0.1);
+}
+
+.Joke-emoji:hover {
+   animation: spin 0.7s ease-in-out 0s;
+}
+
+@keyframes move-up {
+
+   0%,
+   50%,
+   100% {
+      transform: translateY(0);
+   }
+
+   25%,
+   75% {
+      transform: translateY(-3px);
+   }
+}
+
+@keyframes move-down {
+
+   0%,
+   50%,
+   100% {
+      transform: translateY(0);
+   }
+
+   25%,
+   75% {
+      transform: translateY(3px);
+   }
+}
+
+@keyframes spin {
+
+   0%,
+   60%,
+   100% {
+      transform: rotate(0deg);
+   }
+
+   30% {
+      transform: rotate(20deg);
+   }
+
+   80% {
+      transform: rotate(10deg);
+   }
 }
